@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="shopApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Spring shop</title>
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/index.js"></script>
+</head>
+
+<body ng-controller="indexController">
+    <a href="http://localhost:8181/shop/swagger-ui.html" target="_blank" >products API</a>
+    <div>
+        <ng-include src="'product_list.html'"></ng-include>
+    </div>
+</body>
+
+</html>
