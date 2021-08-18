@@ -13,7 +13,7 @@ import java.util.List;
 @Service
 public class JWTTokenService implements ITokenService {
 
-    @Value("$(jwt.secret)")
+    @Value("${jwt.secret}")
     private String JWT_SECRET;
 
     @Override
