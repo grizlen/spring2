@@ -17,11 +17,6 @@ public class ProductController {
 
     private final ProductService productService;
 
-    @GetMapping
-    public String test() {
-        return "ProductController";
-    }
-
     @GetMapping("/api/v1")
     public List<ProductDTO> getAllProducts(){
         return productService.getAllProducts();
@@ -31,4 +26,5 @@ public class ProductController {
     public ProductDTO getProductById(@PathVariable Long id) {
         return productService.getProductById(id);
     }
+
 }

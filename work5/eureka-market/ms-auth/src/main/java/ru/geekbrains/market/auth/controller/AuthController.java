@@ -30,12 +30,7 @@ public class AuthController {
         user.setLogin(request.getLogin());
         user.setPassword(request.getPassword());
         userService.saveUser(user);
-
-        UserInfo userInfo = new UserInfo();
-        userInfo.setId(user.getId());
-        userInfo.setLogin(request.getLogin());
-        userInfo.setRoles(user.getRole().stream().map(role -> role.getName()).collect(Collectors.toList()));
-        System.out.println("Sign up Ok " + user.getLogin());
+        UserInfo userInfo = userToUserInfo(user);
         return new AuthResponseDTO(tokenService.generateToken(userInfo));
     }
 
@@ -43,11 +38,7 @@ public class AuthController {
     public AuthResponseDTO logIn(@RequestBody AuthRequestDTO request) {
         User user = userService.findByLoginAndPassword(request.getLogin(), request.getPassword());
 
-        UserInfo userInfo = new UserInfo();
-        userInfo.setId(user.getId());
-        userInfo.setLogin(request.getLogin());
-        userInfo.setRoles(user.getRole().stream().map(role -> role.getName()).collect(Collectors.toList()));
-        System.out.println("Log in Ok " + user.getLogin());
+        UserInfo userInfo = userToUserInfo(user);
         return new AuthResponseDTO(tokenService.generateToken(userInfo));
     }
 
@@ -56,6 +47,13 @@ public class AuthController {
         if (token != null) {
             redisRepository.setKey(token);
         }
-        System.out.println("log out token: \"" + token + "\"");
+    }
+
+    private UserInfo userToUserInfo(User user) {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setId(user.getId());
+        userInfo.setLogin(user.getLogin());
+        userInfo.setRoles(user.getRole().stream().map(role -> role.getName()).collect(Collectors.toList()));
+        return userInfo;
     }
 }
