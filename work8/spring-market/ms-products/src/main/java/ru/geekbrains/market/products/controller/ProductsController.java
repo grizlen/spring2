@@ -2,9 +2,10 @@ package ru.geekbrains.market.products.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.geekbrains.market.products.model.Product;
+import ru.geekbrains.market.routing.dto.ProductDTO;
 import ru.geekbrains.market.products.service.ProductService;
 
 import java.util.List;
@@ -17,7 +18,12 @@ public class ProductsController {
     private final ProductService productService;
 
     @GetMapping
-    public List<Product> getAll() {
+    public List<ProductDTO> getAll() {
         return productService.getAll();
+    }
+
+    @GetMapping("/{id}")
+    public ProductDTO getById(@PathVariable Long id) {
+        return productService.getById(id);
     }
 }

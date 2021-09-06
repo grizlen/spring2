@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ms-products</artifactId>
+    <artifactId>ms-auth</artifactId>
 
     <dependencies>
         <dependency>
@@ -17,10 +17,6 @@
             <artifactId>core-lib</artifactId>
             <version>1.0</version>
         </dependency>
-        <dependency>
-            <groupId>ru-geekbrains</groupId>
-            <artifactId>routing-lib</artifactId>
-            <version>1.0</version>
-        </dependency>
     </dependencies>
+
 </project>
