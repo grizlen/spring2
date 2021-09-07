@@ -39,7 +39,7 @@ public class AuthService {
     public AuthResponseDTO logIn(AuthRequestDTO authRequestDTO) {
         User user = userRepository.findByLogin(authRequestDTO.getLogin())
                 .orElseThrow(() -> new UserNotFoudException(
-                        "User: " + authRequestDTO.getLogin() + "not found"));
+                        "User: " + authRequestDTO.getLogin() + " not found"));
         if (!passwordEncoder.matches(authRequestDTO.getPassword(), user.getPassword())) {
             throw new UserNotFoudException("Invalid password.");
         }
